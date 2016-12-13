@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:text="@string/header"
         android:layout_centerHorizontal="true"
+        android:id="@+id/header"
         android:textStyle="bold"
         android:textSize="25sp"
         android:textColor="@android:color/background_dark" />
@@ -29,72 +30,75 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
 
-    <Switch
+    <Button
         android:layout_width="wrap_content"
+        android:text="Speech to Text"
         android:layout_height="wrap_content"
-        android:id="@+id/asynk"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/ljud" />
-
-    <TextView
-        android:text="@string/asynk"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/asynktext"
-        android:layout_above="@+id/asynk"
-        android:layout_centerHorizontal="true"
-        android:textColor="@android:color/holo_blue_bright" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/blinka"
-        android:layout_above="@+id/asynktext"
-        android:layout_alignStart="@+id/asynk" />
-
-    <TextView
-        android:text="@string/blinka"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/blinktext"
-        android:layout_above="@+id/blinka"
-        android:layout_alignStart="@+id/asynktext"
-        android:textColor="@android:color/holo_orange_light" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lysa"
-        android:layout_above="@+id/blinktext"
-        android:layout_alignStart="@+id/blinka" />
-
-    <TextView
-        android:text="@string/ljud"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ljudtext"
-        android:layout_below="@+id/asynk"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/colorAccent" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ljud"
-        android:layout_below="@+id/ljudtext"
+        android:id="@+id/stt"
+        android:layout_below="@+id/header"
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="@string/lysa"
-        android:textSize="20sp"
+        android:text="Lampa1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/lysa"
-        android:layout_alignStart="@+id/ljudtext"
-        android:textColor="@android:color/holo_red_dark" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/lampa1"
+        android:layout_below="@+id/stt"
+        android:textSize="20sp"
+        android:textColor="#FFFF"/>
+
+    <TextView
+        android:text="Lampa2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/lampa2"
+        android:layout_below="@+id/lampa1"
+        android:textSize="20sp"
+        android:textColor="#FFFF"/>
+
+    <TextView
+        android:text="Lampa3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/lampa3"
+        android:layout_below="@+id/lampa2"
+        android:textSize="20sp"
+        android:textColor="#FFFF"/>
+
+    <TextView
+        android:text="Temperatur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/temp"
+        android:layout_below="@+id/lampa3"
+        android:textSize="20sp"
+        android:textColor="#FFFF"/>
+
+    <TextView
+        android:text="Fönster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/window"
+        android:layout_below="@+id/temp"
+        android:textSize="20sp"
+        android:textColor="#FFFF"/>
+
+    <TextView
+        android:text="Larm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/larm"
+        android:layout_below="@+id/window"
+        android:textSize="20sp"
+        android:textColor="#FFFF"/>
+    
+
 
 
 </RelativeLayout>

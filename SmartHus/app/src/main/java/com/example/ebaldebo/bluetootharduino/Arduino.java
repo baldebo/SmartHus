@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,24 +14,27 @@ import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Locale;
 import java.util.UUID;
 
 public class Arduino extends Activity {
 
     //Alla variabler
-    private Switch lysa, blinka, asynk, ljud;
+    TextView lampa1, lampa2, lampa3, temp, window, larm;
     private String address = null;
     private static ProgressDialog progress;
     private BluetoothSocket btSocket = null;
     private boolean isBtConnected = false;
     private static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private boolean disconnected = false;
+    private final int REQ_CODE_SPEECH_INPUT = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,65 +50,22 @@ public class Arduino extends Activity {
         registerReceiver(receiver, filter);
 
         //Widgets
-        lysa = (Switch)findViewById(R.id.lysa);
-        blinka = (Switch)findViewById(R.id.blinka);
-        asynk = (Switch)findViewById(R.id.asynk);
-        ljud = (Switch)findViewById(R.id.ljud);
-        Button disconnect = (Button) findViewById(R.id.disconnect);
+        Button stt = (Button) findViewById(R.id.stt);
+        Button disconnect = (Button)findViewById(R.id.disconnect);
+        lampa1 = (TextView)findViewById(R.id.lampa1);
+        lampa2 = (TextView)findViewById(R.id.lampa2);
+        lampa3 = (TextView)findViewById(R.id.lampa3);
+        temp = (TextView)findViewById(R.id.temp);
+        window = (TextView)findViewById(R.id.window);
+        larm = (TextView)findViewById(R.id.larm);
 
         //Använd bakgrundsklassen Bluetooth för att ansluta.
         new Bluetooth().execute();
 
         //Lyssnarna för alla switchar. Gör något och skickar ett meddelande beroende på vad.
-        lysa.setOnClickListener(new View.OnClickListener(){
-            @Override
+        stt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(lysa.isChecked()) {
-                    lysaOn();
-                    Toast.makeText(getApplicationContext(), "Lampa på!", Toast.LENGTH_SHORT).show();
-                } else {
-                    lysaAv();
-                    Toast.makeText(getApplicationContext(), "Lampa av!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        blinka.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(blinka.isChecked()) {
-                    blinkaOn();
-                    Toast.makeText(getApplicationContext(), "Blinkar", Toast.LENGTH_SHORT).show();
-                } else {
-                    blinkaAv();
-                    Toast.makeText(getApplicationContext(), "Blinkar inte", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        asynk.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(asynk.isChecked()) {
-                    asynkOn();
-                    Toast.makeText(getApplicationContext(), "Blinkar asynkront", Toast.LENGTH_SHORT).show();
-                } else {
-                    asynkAv();
-                    Toast.makeText(getApplicationContext(), "Blinkar inte", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        ljud.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(ljud.isChecked()) {
-                    ljudOn();
-                    Toast.makeText(getApplicationContext(), "Ljud på", Toast.LENGTH_SHORT).show();
-                } else {
-                    ljudAv();
-                    Toast.makeText(getApplicationContext(), "Ljud av", Toast.LENGTH_SHORT).show();
-                }
+                speech();
             }
         });
 
@@ -115,9 +76,6 @@ public class Arduino extends Activity {
                 disconnect();      //method to turn on
             }
         });
-
-
-
     }
 
     @Override
@@ -142,85 +100,7 @@ public class Arduino extends Activity {
         }
     }
 
-    private void lysaOn() {
-        if(btSocket != null) {
-            try {
-                btSocket.getOutputStream().write("1".getBytes());
-            } catch(IOException e) {
-                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
 
-    private void lysaAv() {
-        if(btSocket != null) {
-            try {
-                btSocket.getOutputStream().write("2".getBytes());
-            } catch(IOException e) {
-                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-    private void blinkaOn() {
-        if(btSocket != null) {
-            try {
-                btSocket.getOutputStream().write("3".getBytes());
-            } catch(IOException e) {
-                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-    private void blinkaAv() {
-        if(btSocket != null) {
-            try {
-                btSocket.getOutputStream().write("4".getBytes());
-            } catch(IOException e) {
-                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-    private void asynkOn() {
-        if(btSocket != null) {
-            try {
-                btSocket.getOutputStream().write("5".getBytes());
-            } catch(IOException e) {
-                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-    private void asynkAv() {
-        if(btSocket != null) {
-            try {
-                btSocket.getOutputStream().write("6".getBytes());
-            } catch(IOException e) {
-                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-    private void ljudOn() {
-        if(btSocket != null) {
-            try {
-                btSocket.getOutputStream().write("7".getBytes());
-            } catch(IOException e) {
-                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-    private void ljudAv() {
-        if(btSocket != null) {
-            try {
-                btSocket.getOutputStream().write("8".getBytes());
-            } catch(IOException e) {
-                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -235,6 +115,120 @@ public class Arduino extends Activity {
         }
     };
 
+    private void speech() {
+        Intent speech = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        speech.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        speech.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        speech.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.stt));
+
+        try {
+            startActivityForResult(speech, REQ_CODE_SPEECH_INPUT);
+        } catch(ActivityNotFoundException a) {
+            Toast.makeText(getApplicationContext(), "Tal funkar ej", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String[] commands = {
+                "tänd lampa 1",
+                "släck lampa 1",
+                "tänd lampa 2",
+                "släck lampa 2",
+                "tänd lampa 3",
+                "släck lampa 3",
+                "larm på",
+                "stäng av larm"
+        };
+
+        switch(requestCode) {
+            case REQ_CODE_SPEECH_INPUT : {
+                if(resultCode == RESULT_OK && null != data) {
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    if(result.get(0).equals(commands[0])) {
+                        if(btSocket != null) {
+                            try {
+                                btSocket.getOutputStream().write("1".getBytes());
+                            } catch(IOException e) {
+                                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
+                            } break;
+                        }
+                    }
+
+                    if(result.get(0).equals(commands[1])) {
+                        if(btSocket != null) {
+                            try {
+                                btSocket.getOutputStream().write("2".getBytes());
+                            } catch(IOException e) {
+                                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
+                            } break;
+                        }
+                    }
+
+                    if(result.get(0).equals(commands[2])) {
+                        if(btSocket != null) {
+                            try {
+                                btSocket.getOutputStream().write("3".getBytes());
+                            } catch(IOException e) {
+                                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
+                            } break;
+                        }
+                    }
+
+                    if(result.get(0).equals(commands[3])) {
+                        if(btSocket != null) {
+                            try {
+                                btSocket.getOutputStream().write("4".getBytes());
+                            } catch(IOException e) {
+                                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
+                            } break;
+                        }
+                    }
+
+                    if(result.get(0).equals(commands[4])) {
+                        if(btSocket != null) {
+                            try {
+                                btSocket.getOutputStream().write("5".getBytes());
+                            } catch(IOException e) {
+                                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
+                            } break;
+                        }
+                    }
+
+                    if(result.get(0).equals(commands[5])) {
+                        if(btSocket != null) {
+                            try {
+                                btSocket.getOutputStream().write("6".getBytes());
+                            } catch(IOException e) {
+                                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
+                            } break;
+                        }
+                    }
+
+                    if(result.get(0).equals(commands[6])) {
+                        if(btSocket != null) {
+                            try {
+                                btSocket.getOutputStream().write("7".getBytes());
+                            } catch(IOException e) {
+                                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
+                            } break;
+                        }
+                    }
+
+                    if(result.get(0).equals(commands[7])) {
+                        if(btSocket != null) {
+                            try {
+                                btSocket.getOutputStream().write("8".getBytes());
+                            } catch(IOException e) {
+                                Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
+                            } break;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
 
     //Bakgrundsklass för att ansluta till HC-06 via bluetooth.
     private class Bluetooth extends AsyncTask<Void, Void, Void> {
@@ -280,5 +274,4 @@ public class Arduino extends Activity {
             progress.dismiss();
         }
     }
-
 }

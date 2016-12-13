@@ -30,6 +30,7 @@ public class Arduino extends Activity {
     private BluetoothSocket btSocket = null;
     private boolean isBtConnected = false;
     private static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    private boolean disconnected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +132,10 @@ public class Arduino extends Activity {
         if (btSocket != null) {
             try{
                 btSocket.close();
+                disconnected = true;
+                Intent disconnect = new Intent(Arduino.this, Enheter.class);
+                startActivity(disconnect);
+
             } catch(IOException e) {
                 Toast.makeText(getApplicationContext(), "FEL!", Toast.LENGTH_LONG).show();
             }
@@ -222,12 +227,10 @@ public class Arduino extends Activity {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
 
-            switch (action) {
-                case BluetoothDevice.ACTION_ACL_DISCONNECTED:
-                    Intent failConnect = new Intent(Arduino.this, Enheter.class);
-                    Toast.makeText(getApplicationContext(), "Bluetoothanslutningen bröts!", Toast.LENGTH_LONG).show();
-                    startActivity(failConnect);
-                    break;
+            if(action.equals(BluetoothDevice.ACTION_ACL_DISCONNECTED) && !disconnected) {
+                Intent failConnect = new Intent(Arduino.this, Enheter.class);
+                Toast.makeText(getApplicationContext(), "Bluetoothanslutningen bröts!", Toast.LENGTH_LONG).show();
+                startActivity(failConnect);
             }
         }
     };
@@ -271,7 +274,7 @@ public class Arduino extends Activity {
                 Intent failConnect = new Intent(Arduino.this, Enheter.class);
                 startActivity(failConnect);
             } else {
-                Toast.makeText(getApplicationContext(), "Ansluten.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Ansluten.", Toast.LENGTH_SHORT).show();
                 isBtConnected = true;
             }
             progress.dismiss();

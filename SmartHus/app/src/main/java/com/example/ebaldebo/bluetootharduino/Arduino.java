@@ -238,6 +238,8 @@ public class Arduino extends Activity {
 
             if(!ansluten) {
                 Toast.makeText(getApplicationContext(), "Anslutning misslyckat", Toast.LENGTH_LONG).show();
+                Intent failConnect = new Intent(Arduino.this, Enheter.class);
+                startActivity(failConnect);
             } else {
                 Toast.makeText(getApplicationContext(), "Ansluten.", Toast.LENGTH_LONG).show();
                 isBtConnected = true;

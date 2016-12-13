@@ -6,7 +6,10 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -36,6 +39,10 @@ public class Arduino extends Activity {
         address = newInt.getStringExtra(Enheter.EXTRA_ADDRESS);
 
         setContentView(R.layout.activity_arduino);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        registerReceiver(receiver, filter);
 
         //Widgets
         lysa = (Switch)findViewById(R.id.lysa);
@@ -110,6 +117,13 @@ public class Arduino extends Activity {
 
 
 
+    }
+
+    @Override
+    protected void onDestroy () {
+        super.onDestroy();
+
+        unregisterReceiver(receiver);
     }
 
     //Metoder för att kommunicera med Arduino. Skickar 1,2,3,4,5,6,7,8 som hanteras av Arduinon.
@@ -202,6 +216,22 @@ public class Arduino extends Activity {
             }
         }
     }
+
+    private final BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            switch (action) {
+                case BluetoothDevice.ACTION_ACL_DISCONNECTED:
+                    Intent failConnect = new Intent(Arduino.this, Enheter.class);
+                    Toast.makeText(getApplicationContext(), "Bluetoothanslutningen bröts!", Toast.LENGTH_LONG).show();
+                    startActivity(failConnect);
+                    break;
+            }
+        }
+    };
+
 
     //Bakgrundsklass för att ansluta till HC-06 via bluetooth.
     private class Bluetooth extends AsyncTask<Void, Void, Void> {

@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ebaldebo.bluetootharduino.Arduino"
-    android:background="@color/colorPrimary">
+    >
 
 
     <TextView
@@ -32,71 +32,71 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:text="Speech to Text"
+        android:text="@string/sttbutton"
         android:layout_height="wrap_content"
         android:id="@+id/stt"
         android:layout_below="@+id/header"
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Lampa1"
+        android:text="@string/lampa1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:id="@+id/lampa1"
         android:layout_below="@+id/stt"
         android:textSize="20sp"
-        android:textColor="#FFFF"/>
+        android:textColor="#000000"/>
 
     <TextView
-        android:text="Lampa2"
+        android:text="@string/lampa2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:id="@+id/lampa2"
         android:layout_below="@+id/lampa1"
         android:textSize="20sp"
-        android:textColor="#FFFF"/>
+        android:textColor="#000000"/>
 
     <TextView
-        android:text="Lampa3"
+        android:text="@string/lampa3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:id="@+id/lampa3"
         android:layout_below="@+id/lampa2"
         android:textSize="20sp"
-        android:textColor="#FFFF"/>
+        android:textColor="#000000"/>
 
     <TextView
-        android:text="Temperatur"
+        android:text="@string/temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:id="@+id/temp"
         android:layout_below="@+id/lampa3"
         android:textSize="20sp"
-        android:textColor="#FFFF"/>
+        android:textColor="#000000"/>
 
     <TextView
-        android:text="Fönster"
+        android:text="@string/window"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:id="@+id/window"
         android:layout_below="@+id/temp"
         android:textSize="20sp"
-        android:textColor="#FFFF"/>
+        android:textColor="#000000"/>
 
     <TextView
-        android:text="Larm"
+        android:text="@string/larm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:id="@+id/larm"
         android:layout_below="@+id/window"
         android:textSize="20sp"
-        android:textColor="#FFFF"/>
+        android:textColor="#000000"/>
     
 
 

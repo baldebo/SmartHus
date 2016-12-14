@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">BluetoothArduino</string>
     <string name="header">Skicka kommandon till Arduino</string>
-    <string name="lysa">Lysa</string>
-    <string name="blinka">Blinka</string>
-    <string name="asynk">Asynk</string>
-    <string name="ljud">Ljud</string>
+    <string name="lampa1">Lampa1</string>
+    <string name="lampa2">Lampa2</string>
+    <string name="lampa3">Lampa3</string>
+    <string name="temp">Temp</string>
+    <string name="window">Fönster</string>
+    <string name="larm">Larm</string>
+    <string name="sttbutton">Speech to Text</string>
     <string name="disconnect">Koppla från</string>
     <string name="enheter">Enheter</string>
     <string name="parkopplade">Visa parkopplade enheter</string>

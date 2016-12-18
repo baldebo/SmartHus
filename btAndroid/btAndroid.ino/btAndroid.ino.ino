@@ -17,7 +17,6 @@ long blueTimer;
 int larmState = 0;
 long larmTime = 0;
 long larmDelay = 200;
-boolean larmTriggered = false;
 boolean larmOn = false;
 
 
@@ -83,17 +82,6 @@ void loop() {
         }
         break;
       }
-      case '4' : {
-        if(larmOn != true) {
-          larmOn = true;
-          values[5] = 1;
-        }
-        else {
-          larmOn = false;
-          values[5] = 0;              
-        }
-        break;
-      }
     }
   }
   
@@ -104,17 +92,16 @@ void loop() {
 }
 
 void checkTemp() {
-  
+
+  if(millis() - tempTime > tempDelay) {
   int sensor = analogRead(tempPin);  
   float tempVal = (sensor * 5.0 / 1024.0 - 0.5) * 100;
   round(tempVal);
   int roundTemp = tempVal;
   values[3] = roundTemp;
-  
-  if(millis() - tempTime > tempDelay){
-    tempTime = millis();
+  tempTime = millis();
   }
-  
+    
 }
 
 void checkWindow() {
@@ -129,16 +116,12 @@ void checkWindow() {
 
 void checkLarm() {
   larmState = digitalRead(larm);
-  if(larmOn == true) {
   if(larmState == HIGH && previous == LOW && millis() - larmTime > larmDelay) {
-    if (current == HIGH) current = LOW;
-    else current = HIGH;
-    if(current == HIGH) larmTriggered = true;
-    else larmTriggered = false;
-
+    if (current == HIGH) { current = LOW; values[5] = 1;}
+    else{ current = HIGH; values[5] = 0; }
     larmTime = millis();
   }
-  }
+  
   
   previous = larmState; 
   

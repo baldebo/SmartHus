@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:orientation="horizontal"
+        android:layout_weight="1" >
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/temp"
+            android:text="@string/temp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textSize="40sp"
+            android:textColor="#FFF"
+            android:background="#512DA8"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:orientation="horizontal"
+        android:layout_weight="1" >
+
+        <TextView
+            android:background="#673AB7"
+            android:id="@+id/lampa1"
+            android:layout_width="0dip"
+            android:textSize="28sp"
+            android:textColor="#FFF"
+            android:text="@string/lamp1"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:text="@string/lamp2"
+            android:id="@+id/lampa2"
+            android:textSize="28sp"
+            android:textColor="#FFF"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center"
+            android:background="#607D8B"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:text="@string/lamp3"
+            android:id="@+id/lampa3"
+            android:textSize="28sp"
+            android:textColor="#FFF"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center"
+            android:background="#6C5B7B"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:orientation="horizontal"
+        android:layout_weight="1" >
+
+        <TextView
+            android:text="@string/window"
+            android:textColor="#FFF"
+            android:textSize="33sp"
+            android:id="@+id/window"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center"
+            android:background="#355C7D"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:text="@string/alarm"
+            android:textColor="#FFF"
+            android:textSize="33sp"
+            android:id="@+id/larm"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center"
+            android:background="#757575"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        >
+        <Button style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/stt"
+            android:textSize="28sp"
+            android:background="#4CAF50"
+            android:textColor="#FFF"
+            android:fontFamily="sans-serif-smallcaps"
+            android:id="@+id/stt"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+        <Button style="?android:attr/buttonBarButtonStyle"
+            android:background="#388E3C"
+            android:textColor="#FFF"
+            android:fontFamily="sans-serif-smallcaps"
+            android:id="@+id/disconnect"
+            android:textSize="28sp"
+            android:text="@string/disconnect"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>

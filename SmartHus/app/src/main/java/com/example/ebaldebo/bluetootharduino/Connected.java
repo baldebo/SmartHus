@@ -93,42 +93,42 @@ public class Connected extends Activity {
                             if (lamp1Value.equals("1")) {
                                 if(!lamp1Value.equals(Character.toString(message.charAt(0)))) {
                                     v.vibrate(100);
-                                    Toast.makeText(getApplicationContext(), "Lampa 1 Tänd", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Lamp 1 ON", Toast.LENGTH_SHORT).show();
                                 }
                                 lamp1.setText(R.string.lamp1On);
                             }
                                 else if(lamp1Value.equals("0")) {
                                 if(!lamp1Value.equals(Character.toString(message.charAt(0)))) {
                                     v.vibrate(100);
-                                    Toast.makeText(getApplicationContext(), "Lampa 1 Släckt", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Lamp 1 OFF", Toast.LENGTH_SHORT).show();
                                 }
                                 lamp1.setText(R.string.lamp1Off);
                             }
                             if (lamp2Value.equals("1")){
                                 if(!lamp2Value.equals(Character.toString(message.charAt(1)))) {
                                     v.vibrate(100);
-                                    Toast.makeText(getApplicationContext(), "Lampa 2 Tänd", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Lamp 2 ON", Toast.LENGTH_SHORT).show();
                                 }
                                 lamp2.setText(R.string.lamp2On);
                             }
                                 else if (lamp2Value.equals("0")){
                                 if(!lamp2Value.equals(Character.toString(message.charAt(1)))) {
                                     v.vibrate(100);
-                                    Toast.makeText(getApplicationContext(), "Lampa 2 Släckt", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Lamp 2 OFF", Toast.LENGTH_SHORT).show();
                                 }
                                 lamp2.setText(R.string.lamp2Off);
                             }
                             if (lamp3Value.equals("1")){
                                 if(!lamp3Value.equals(Character.toString(message.charAt(2)))) {
                                     v.vibrate(100);
-                                    Toast.makeText(getApplicationContext(), "Lampa 3 Tänd", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Lamp 3 ON", Toast.LENGTH_SHORT).show();
                                 }
                                 lamp3.setText(R.string.lamp3On);
                             }
                                 else if(lamp3Value.equals("0")){
                                 if(!lamp3Value.equals(Character.toString(message.charAt(2)))) {
                                     v.vibrate(100);
-                                    Toast.makeText(getApplicationContext(), "Lampa 3 Släckt", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Lamp 3 OFF", Toast.LENGTH_SHORT).show();
                                 }
                                 lamp3.setText(R.string.lamp3Off);
                             }
@@ -137,28 +137,28 @@ public class Connected extends Activity {
                             if (windowValue.equals("1")){
                                 if(!windowValue.equals(Character.toString(message.charAt(3)))) {
                                     v.vibrate(100);
-                                    Toast.makeText(getApplicationContext(), "Fönster öppet!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Window Open!", Toast.LENGTH_SHORT).show();
                                 }
                                 window.setText(R.string.windowOpen);
                             }
                                 else if (windowValue.equals("0")){
                                 if(!windowValue.equals(Character.toString(message.charAt(3)))) {
                                     v.vibrate(100);
-                                    Toast.makeText(getApplicationContext(), "Fönster stängt!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Window Closed!", Toast.LENGTH_SHORT).show();
                                 }
                                 window.setText(R.string.windowClosed);
                             }
                             if (alarmValue.equals("1")) {
                                 if(!alarmValue.equals(Character.toString(message.charAt(4)))) {
                                     v.vibrate(100);
-                                    Toast.makeText(getApplicationContext(), "Alarm på!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Alarm On!", Toast.LENGTH_SHORT).show();
                                 }
                                 alarm.setText(R.string.alarmOn);
                             }
                                 else if (alarmValue.equals("0")) {
                                 if(!alarmValue.equals(Character.toString(message.charAt(4)))) {
                                     v.vibrate(100);
-                                    Toast.makeText(getApplicationContext(), "Alarm av!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Alarm Off!", Toast.LENGTH_SHORT).show();
                                 }
                                 alarm.setText(R.string.alarmOff);
                             }

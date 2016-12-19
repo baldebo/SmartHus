@@ -68,7 +68,7 @@ public class Devices extends Activity {
             }
         } else {
             //Show message if no paired devices were found.
-            Toast.makeText(getApplicationContext(), "Inga parkopplade enheter funna", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "No paired devices found.", Toast.LENGTH_LONG).show();
         }
 
         final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);

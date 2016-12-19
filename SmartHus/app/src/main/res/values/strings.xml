@@ -1,25 +1,25 @@
 <resources>
     <string name="app_name">BluetoothArduino</string>
-    <string name="lamp1">Lampa1</string>
-    <string name="lamp2">Lampa2</string>
-    <string name="lamp3">Lampa3</string>
+    <string name="lamp1">Lamp1</string>
+    <string name="lamp2">Lamp2</string>
+    <string name="lamp3">Lamp3</string>
     <string name="temp">Temp</string>
-    <string name="window">Fönster</string>
-    <string name="alarm">Larm</string>
-    <string name="disconnect">Koppla från</string>
-    <string name="devices">Enheter</string>
-    <string name="paired">Visa parkopplade enheter</string>
-    <string name="stt">Säg något!</string>
+    <string name="window">Window</string>
+    <string name="alarm">Alarm</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="devices">Devices</string>
+    <string name="paired">Show paired devices</string>
+    <string name="stt">Voice command</string>
     <string name="lamp1On">Lamp 1\nOn</string>
     <string name="lamp1Off">Lamp 1\nOff</string>
     <string name="lamp2On">Lamp 2\nOn</string>
     <string name="lamp2Off">Lamp 2\nOff</string>
     <string name="lamp3On">Lamp 3\nOn</string>
     <string name="lamp3Off">Lamp 3\nOff</string>
-    <string name="windowOpen">Fönster\nÖppet</string>
-    <string name="windowClosed">Fönster\nStängt</string>
-    <string name="alarmOn">Larm\npå</string>
-    <string name="alarmOff">Larm\nav</string>
+    <string name="windowOpen">Window\nOpen</string>
+    <string name="windowClosed">Window\nClosed</string>
+    <string name="alarmOn">Alarm\nOn</string>
+    <string name="alarmOff">Alarm\nOff</string>
 
 
 

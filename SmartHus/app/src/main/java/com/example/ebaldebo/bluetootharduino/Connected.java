@@ -71,6 +71,7 @@ public class Connected extends Activity {
         alarm = (TextView)findViewById(R.id.larm);
 
 
+        //Handler that parses and takes care of messages from the Arduino.
         bluetoothIn = new Handler(new Handler.Callback() {
             public boolean handleMessage(android.os.Message msg) {
                 if(msg.what == handlerState) {
@@ -164,6 +165,7 @@ public class Connected extends Activity {
                             }
 
                         }
+                        //message variable to track changes.
                         message = "";
                         message += recDataString.substring(1,2);
                         message += recDataString.substring(2,3);
@@ -284,6 +286,7 @@ public class Connected extends Activity {
         }
     }
 
+    //Thread to handle stuff outside of the main thread.
     private class ConnectedThread extends Thread {
         private final InputStream inPut;
         private final OutputStream outPut;

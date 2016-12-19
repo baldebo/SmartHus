@@ -1,4 +1,4 @@
-/*  Skapad av Emil Baldebo
+/*  Created by Emil Baldebo
     9/12/2016 */
 
 package com.example.ebaldebo.bluetootharduino;

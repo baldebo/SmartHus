@@ -80,7 +80,7 @@ public class Connected extends Activity {
                     int endOfLineIndex = recDataString.indexOf("Q");
                     if (endOfLineIndex > 0) {
                         if(recDataString.charAt(0) == 'P') {
-
+                            //Parse value between P and Q
                             String lamp1Value = recDataString.substring(1,2);
                             String lamp2Value = recDataString.substring(2,3);
                             String lamp3Value = recDataString.substring(3,4);
